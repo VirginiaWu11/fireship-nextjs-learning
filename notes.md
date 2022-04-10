@@ -16,3 +16,8 @@
    B.
 
 5. SSG public/ford,lambo,tesla json files added to simulate fetching data from a database/api
+
+6. SSR - Server side rendering - generate each page at request time - the content is generated on a server when requested by the user. ideal when data changes constantly, ensures the user will get the latest and greated data from the data source.
+   - Drawbacks - slower, and less efficiaent because you need to have a server in place to respond to those requests as opposed to caching everything on a global cdn. e.g. ebay auction listings changing all the time.
+   - easy to implement in Next. The only difference is the name of the function. SSG is getStaticProps and SSR is getServerSideProps;
+     does the same thing, but does it on every request instead of at build time. No longer need getStaticPaths

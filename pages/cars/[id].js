@@ -23,24 +23,35 @@ export default function Car({ car }) {
   );
 }
 
-export async function getStaticProps({ params }) {
-  //getStaticProps() tells next to prerender page, when the site is built, next will automatically call this function then send the result as props to the component itself
+// ** SSG-
 
+// export async function getStaticProps({ params }) {
+//   //getStaticProps() tells next to prerender page, when the site is built, next will automatically call this function then send the result as props to the component itself
+
+//   const req = await fetch(`http://localhost:3001/${params.id}.json`);
+//   const data = await req.json();
+//   return {
+//     props: { car: data }, //this is passed into the main component
+//   };
+// }
+
+// // Let Next know which dynamic pages to prerender:
+// // this function can also request data from an api or database. It's job is to return a paths object that contains an array with every route for this dynamic url. This demo only has 3 routes
+// export async function getStaticPaths() {
+//   const req = await fetch("http://localhost:3001/cars.json");
+//   const data = await req.json();
+
+//   const paths = data.map((car) => {
+//     return { params: { id: car } };
+//   });
+//   return { paths, fallback: false };
+// }
+
+// ** SSR- same but different function name:
+export async function getServerSideProps({ params }) {
   const req = await fetch(`http://localhost:3001/${params.id}.json`);
   const data = await req.json();
   return {
-    props: { car: data }, //this is passed into the main component
+    props: { car: data },
   };
-}
-
-// Let Next know which dynamic pages to prerender:
-// this function can also request data from an api or database. It's job is to return a paths object that contains an array with every route for this dynamic url. This demo only has 3 routes
-export async function getStaticPaths() {
-  const req = await fetch("http://localhost:3001/cars.json");
-  const data = await req.json();
-
-  const paths = data.map((car) => {
-    return { params: { id: car } };
-  });
-  return { paths, fallback: false };
 }
