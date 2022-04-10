@@ -3,3 +3,16 @@
 1. run `npx create-next-app <app-name>`
 
 2. every file/page in pages directory needs to have one default export. this will become a route.
+
+3. pages/api directory is for setting up routes that will only apply to the server. the code written here will not increase the client side javascript bundle that needs to be sent to the network
+
+4. server rendering, SSG & SSR
+
+   A. - SSG - static generation - prerendering. render all pages at build time. generate all html files, upload them to a storage bucket or static host then delivered with very high performance over a cdn. - most suited for data that doesnt change often and sites that have a relatively low number of total pages. e.g. blog. data most likely do not change on a daily bases
+
+   - drawback - data may become stale - if the data on the server changes, you need to rebuild and redeploy in order for the changes to be reflected
+     - hard to scale to many pages - slow to prerender 1000 pages.
+
+   B.
+
+5. SSG public/ford,lambo,tesla json files added to simulate fetching data from a database/api
